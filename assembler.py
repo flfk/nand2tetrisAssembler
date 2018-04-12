@@ -1,6 +1,7 @@
 # converts .asm file to .hack output file
 # Usage: assembler.py <file.asm>
 
+import symbolHandler
 import sys
 import parser
 import translator
@@ -30,8 +31,12 @@ def main():
 	# Parse input file
 	commands = parser.getCommands(inputFile)
 
+	# Convert symbols
+	symbolConverter = symbolHandler.SymbolHandler(commands)
+	convertedCommands = symbolConverter.getConvertedCommands()
+
 	# Translate commands
-	codeTranslator = translator.Translator(commands)
+	codeTranslator = translator.Translator(convertedCommands)
 	commandsTranslated = codeTranslator.getTranslatations()
 
 	# Write to ourput file
