@@ -1,27 +1,60 @@
-# Parses assembly language text file line by line, removes white space and categorises line
+# Parses each line of an assembly language text file, removes the white space and categorises lines into A or C Commands
 
-filename = "tests/noComments.asm"
+filename = "tests/parserTest.asm"
 
-def removeSpaces(lines):
-	"""removes spaces from array of strings"""
-	linesNoSpaces = []
-	for line in lines:
-		cleanedLine = line.replace(" ","")
-		linesNoSpaces.append(cleanedLine)
-	return linesNoSpaces
+class Parser():
+	def __init__ (self, line):
+		self.line = line
 
-def removeEmptyLines(lines):
-	linesNoEmpties = []
-	for line in lines:
-		if not ("\n"):
-			linesNoEmpties.append(line)
+	def removeSpaces(self):
+		self.line = self.line.replace(' ', '')
+
+	def removeComments(self):
+		splitLine = self.line.split("//", 1)
+		self.line = splitLine[0]
+
+	def removeNewlineChar(self):
+		splitLine = self.line.split('\n', 1)
+		self.line = splitLine[0]
+
+	def isBlank(self):
+		if self.line == '':
+			return True
+		else:
+			return False
+
+class ACommand():
+	def __init__ (self, line):
+		self.line = line
+		self.address = self.line[1:]
+
+
+# class CCommand():
 
 
 file = open(filename, 'r')
 lines = file.readlines()
-countLines = len(lines)
 
-linesNoSpaces = removeSpaces(lines)
-linesNoEmpties = removeEmptyLines(linesNoSpaces)
+parsedLines = []
+for line in lines:
+	lineParser = Parser(line)
 
-print(linesNoEmpties)
+	lineParser.removeSpaces()
+	lineParser.removeComments()
+	lineParser.removeNewlineChar()
+
+	if not lineParser.isBlank():
+		parsedLines.append(lineParser.line)
+
+test = "@100"
+aCommand = ACommand(test)
+print(aCommand.line)
+print(aCommand.address)
+
+
+print(parsedLines)
+
+
+# for parsedLine in parsedLines:
+# 	print(parsedLine.line)
+
