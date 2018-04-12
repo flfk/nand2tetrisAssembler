@@ -23,13 +23,32 @@ class Parser():
 		else:
 			return False
 
+	def getCommand
+
 class ACommand():
 	def __init__ (self, line):
 		self.line = line
 		self.address = self.line[1:]
 
 
-# class CCommand():
+class CCommand():
+	def __init__ (self,line):
+		self.line = line
+		if '=' in self.line:
+			self.isJump = False
+			self.jump = False
+			splitLine = self.line.split('=')
+			self.dest = splitLine[0]
+			self.comp = splitLine[1]
+		else:
+			self.isJump = True
+			self.dest = False
+			splitLine = self.line.split(';')
+			self.comp = splitLine[0]
+			self.jump = splitLine[1]
+			
+
+
 
 
 file = open(filename, 'r')
@@ -46,13 +65,21 @@ for line in lines:
 	if not lineParser.isBlank():
 		parsedLines.append(lineParser.line)
 
-test = "@100"
-aCommand = ACommand(test)
-print(aCommand.line)
-print(aCommand.address)
-
-
 print(parsedLines)
+
+commands = []
+for line in parsedLines:
+	getCommand
+# test = "0;JMP"
+# cCommand = CCommand(test)
+# print(cCommand.line)
+# print(cCommand.isJump)
+# print(cCommand.dest)
+# print(cCommand.comp)
+# print(cCommand.jump)
+
+
+
 
 
 # for parsedLine in parsedLines:
