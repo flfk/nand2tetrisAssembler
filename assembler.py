@@ -6,6 +6,7 @@ import sys
 import parser
 import translator
 
+# FUNCTIONS
 def main():
 
 	# Ensure single command line argument provided
@@ -45,5 +46,6 @@ def main():
 
 	output.close()
 
+# MAIN
 if __name__ == "__main__":
 	main()

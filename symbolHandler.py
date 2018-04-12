@@ -2,6 +2,7 @@
 
 import predefinedSymbolTable
 
+# CLASSES
 class SymbolHandler():
 	def __init__ (self, commands):
 		self.commands = commands

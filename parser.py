@@ -1,6 +1,6 @@
 # Parses each line of an assembly language text file, removes the white space and categorises lines into A or C Commands
 
-# Classes and methods
+# CLASSES
 class LineParser():
 	def __init__ (self, line):
 		self.line = line
@@ -22,7 +22,7 @@ class LineParser():
 		else:
 			return False
 
-# Functions
+# FUNCTIONS
 def getCommands(filename):
 	"""Returns list of strings representing asm commands from input file"""
 
@@ -41,7 +41,3 @@ def getCommands(filename):
 			parsedFile.append(lineParser.line)
 
 	return parsedFile
-
-# filename = "tests/parserTest.asm"
-# parsedFile = parseFile(filename)
-# print(parsedFile)

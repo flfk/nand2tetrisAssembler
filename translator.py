@@ -3,8 +3,7 @@
 import parser
 import CInstructionTables
 
-# Classes
-
+# CLASSES
 class Translator():
 	def __init__ (self, commands):
 		self.commands = commands
@@ -65,6 +64,7 @@ class CCommand():
 		translation = '111' + comp + dest + jump
 		return translation
 
+# FUNCTIONS
 def get15BitBinary(decimal):
 	bitsRequired = 15
 	rawBinary = bin(int(decimal))[2:]
