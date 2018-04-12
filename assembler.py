@@ -29,8 +29,6 @@ def main():
 
 	# Parse input file
 	commands = parser.getCommands(inputFile)
-	# for command in commands:
-		# print(command)
 
 	# Translate commands
 	codeTranslator = translator.Translator(commands)
