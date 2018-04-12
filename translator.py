@@ -72,15 +72,3 @@ def get15BitBinary(decimal):
 	for i in range(bitsRequired - len(rawBinary)):
 		padding = '0' + padding
 	return padding + rawBinary
-
-filename = "tests/parserTest.asm"
-commands = parser.getCommands(filename)
-translator = Translator(commands)
-commandsTranslated = translator.getTranslatations()
-
-for command in commandsTranslated:
-	print(command)
-
-# binary = getBinary('4')
-# paddedBinary = get15BitBinary(binary)
-# print(paddedBinary)
