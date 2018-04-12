@@ -52,17 +52,17 @@ class CCommand():
 			self.jump = splitLine[1]
 
 	def translate(self):
-		destDict = CInstructionTables.dest
 		compDict = CInstructionTables.comp
+		destDict = CInstructionTables.dest
 		jumpDict = CInstructionTables.jump
 		
-		dest = destDict[self.dest]
 		comp = compDict[self.comp]
+		dest = destDict[self.dest]
 		jump = jumpDict[self.jump]
 
-		# print((self.dest, self.comp, self.jump) + (dest, comp, jump))
+		# print((self.comp, self.dest, self.jump) + (comp, dest, jump))
 
-		translation = '111' + dest + comp + jump
+		translation = '111' + comp + dest + jump
 		return translation
 
 def get15BitBinary(decimal):

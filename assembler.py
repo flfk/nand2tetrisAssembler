@@ -29,10 +29,8 @@ def main():
 
 	# Parse input file
 	commands = parser.getCommands(inputFile)
-	for command in commands:
-		print(command)
-
-	print()
+	# for command in commands:
+		# print(command)
 
 	# Translate commands
 	codeTranslator = translator.Translator(commands)
@@ -40,8 +38,9 @@ def main():
 
 	# Write to ourput file
 	for command in commandsTranslated:
-		print(command)
 		output.write(command + '\n')
+
+	output.close()
 
 if __name__ == "__main__":
 	main()
