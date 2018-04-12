@@ -1,8 +1,7 @@
 # Parses each line of an assembly language text file, removes the white space and categorises lines into A or C Commands
 
-filename = "tests/parserTest.asm"
-
-class Parser():
+# Classes and methods
+class LineParser():
 	def __init__ (self, line):
 		self.line = line
 
@@ -23,65 +22,26 @@ class Parser():
 		else:
 			return False
 
-	def getCommand
+# Functions
+def getCommands(filename):
+	"""Returns list of strings representing asm commands from input file"""
 
-class ACommand():
-	def __init__ (self, line):
-		self.line = line
-		self.address = self.line[1:]
+	file = open(filename, 'r')
+	lines = file.readlines()
 
+	parsedFile = []
+	for line in lines:
+		lineParser = LineParser(line)
 
-class CCommand():
-	def __init__ (self,line):
-		self.line = line
-		if '=' in self.line:
-			self.isJump = False
-			self.jump = False
-			splitLine = self.line.split('=')
-			self.dest = splitLine[0]
-			self.comp = splitLine[1]
-		else:
-			self.isJump = True
-			self.dest = False
-			splitLine = self.line.split(';')
-			self.comp = splitLine[0]
-			self.jump = splitLine[1]
-			
+		lineParser.removeSpaces()
+		lineParser.removeComments()
+		lineParser.removeNewlineChar()
 
+		if not lineParser.isBlank():
+			parsedFile.append(lineParser.line)
 
+	return parsedFile
 
-
-file = open(filename, 'r')
-lines = file.readlines()
-
-parsedLines = []
-for line in lines:
-	lineParser = Parser(line)
-
-	lineParser.removeSpaces()
-	lineParser.removeComments()
-	lineParser.removeNewlineChar()
-
-	if not lineParser.isBlank():
-		parsedLines.append(lineParser.line)
-
-print(parsedLines)
-
-commands = []
-for line in parsedLines:
-	getCommand
-# test = "0;JMP"
-# cCommand = CCommand(test)
-# print(cCommand.line)
-# print(cCommand.isJump)
-# print(cCommand.dest)
-# print(cCommand.comp)
-# print(cCommand.jump)
-
-
-
-
-
-# for parsedLine in parsedLines:
-# 	print(parsedLine.line)
-
+# filename = "tests/parserTest.asm"
+# parsedFile = parseFile(filename)
+# print(parsedFile)
